@@ -1,11 +1,21 @@
-from email.policy import HTTP
-import http
-from http.client import HTTPResponse
+from multiprocessing import context
+from re import template
+from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
 def index(request):
-    return HTTPResponse('Главная страница')
+    template = 'posts/index.html'
+    title = 'Это главная страница проекта Yatube'
+    context = {
+        'title': title,
+    }
+    return render(request, template, context)
 
-def grup_posts(request):
-        return HTTPResponse('Группы по интересам')
+def group_posts(request, slug):
+    template = 'posts/group_list.html'
+    title = 'Здесь будет информация о группах проекта Yatube'
+    context = {
+        'title': title,
+    }
+    return render(request, template, context)
